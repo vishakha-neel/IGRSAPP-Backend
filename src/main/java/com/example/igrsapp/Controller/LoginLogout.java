@@ -23,8 +23,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class LoginLogout {
 
     @Autowired
@@ -47,44 +48,6 @@ public class LoginLogout {
         response.put("sessionId", session.getId());
         return new ResponseEntity<Map<String, String>>(response, HttpStatus.OK);
     }
-
-    // Login
-    // @RequestMapping(value = "/login", method = RequestMethod.POST)
-    // public ResponseEntity<Map<String, Object>> login(
-    //         HttpServletRequest request,
-    //         @RequestParam("userId") String userId,
-    //         @RequestParam("password") String password,
-    //         @RequestParam("captcha") String captcha) {
-    //     HttpSession session = request.getSession();
-    //     String captchaStr = (String) session.getAttribute("captchaStr");
-
-    //     Map<String, Object> response = new HashMap<String, Object>();
-    //     if (captchaStr != null && captchaStr.equals(captcha)) {
-    //         String flage = "Disabled";
-    //         try {
-    //             flage = userService.authUser(userId, password);
-    //         } catch (Exception e) {
-    //             response.put("success", Boolean.FALSE);
-    //             response.put("message", "Server error");
-    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    //         }
-    //         if (flage.equals("Success")) {
-    //             session.setAttribute("uBean", userService.getUserBean(userId));
-    //             // commonService.insertLogs(userId, "1", request);
-    //             response.put("success", Boolean.TRUE);
-    //             response.put("message", "Login successful");
-    //             response.put("sessionId", session.getId());
-    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    //         } else {
-    //             response.put("success", Boolean.FALSE);
-    //             response.put("message", flage.equals("Disabled") ? "Your UserId has been disabled" : "Wrong UserId/Password");
-    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    //         }
-    //     }
-    //     response.put("success", Boolean.FALSE);
-    //     response.put("message", "Invalid Captcha");
-    //     return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    // }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestParam String userId,
