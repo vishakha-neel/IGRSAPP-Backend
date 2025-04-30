@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,9 +42,10 @@ public class PdfController {
     //             .body(imageBytes);
     // }
 
-    @GetMapping("/{fileId}/page/{pageNumber}")
-    public ResponseEntity<String> getPageImageBase64(@PathVariable String fileId, @PathVariable int pageNumber) throws IOException {
-        byte[] imageBytes = pdfService.getPageImage(fileId, pageNumber);
+    @GetMapping("/{fileId}/{district}/{subDistrict}/{pageNumber}")
+    public ResponseEntity<String> getPageImageBase64(@PathVariable String fileId , @PathVariable String district , @PathVariable String subDistrict , @PathVariable int pageNumber) throws IOException {
+        System.out.println("Called");
+    	byte[] imageBytes = pdfService.getPageImage(fileId, district , subDistrict ,pageNumber);
         String base64 = Base64.getEncoder().encodeToString(imageBytes);
         return ResponseEntity.ok(base64);
     }

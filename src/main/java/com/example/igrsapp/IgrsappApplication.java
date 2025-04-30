@@ -8,14 +8,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootApplication(
-    scanBasePackages = "com.example.igrsapp"
-    // ,exclude = {
-    //     DataSourceAutoConfiguration.class, 
-    //     HibernateJpaAutoConfiguration.class 
-    // }
-)
-// @EnableJpaRepositories(basePackages = "com.example.igrsapp.Repository")
+@SpringBootApplication(scanBasePackages = "com.example.igrsapp")
+
 public class IgrsappApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
