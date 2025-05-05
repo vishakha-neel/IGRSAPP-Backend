@@ -19,7 +19,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    basePackages = "com.example.igrsapp.repository.mainigrs",
+    basePackages = {
+    		"com.example.igrsapp.Repository.mainigrs",
+    		"com.example.igrsapp.modals.mainigrs"         	
+    },
     entityManagerFactoryRef = "mainEntityManager",
     transactionManagerRef = "mainTransactionManager"
 )
